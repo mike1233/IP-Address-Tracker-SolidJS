@@ -19,6 +19,7 @@
     "vite-plugin-solid": "^2.5.0"
   },
   "dependencies": {
+    "@solid-primitives/scheduled": "^1.2.1",
     "@solidjs/router": "^0.7.0",
     "axios": "^1.2.5",
     "leaflet": "^1.9.3",

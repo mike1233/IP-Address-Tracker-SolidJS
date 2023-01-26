@@ -7,9 +7,21 @@ const isIP = (str: string) => {
   return regexExp.test(str);
 };
 
+const isDomain = (str: string) => {
+  const regexExp = /^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$/gi;
+
+  return regexExp.test(str);
+};
+
 export const GeolocationService = {
   async getGeolocation(ipOrDomain: string) {
     const isIp = isIP(ipOrDomain);
+    const isD = isDomain(ipOrDomain);
+
+    if (!isIp && !isD) {
+      throw new Error("Invalid IP or Domain");
+    }
+
     if (isIp) {
       return await GeolocationRepository.getGeolocationByIp(ipOrDomain);
     }
