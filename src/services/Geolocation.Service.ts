@@ -1,43 +1,18 @@
-import { z } from "zod";
-import { http } from "../config/axios";
+import { GeolocationRepository } from "../repositories/Geolocation.repository";
 
-const LocationSchema = z.object({
-  country: z.string(),
-  region: z.string(),
-  timezone: z.string(),
-});
+const isIP = (str: string) => {
+  const regexExp =
+    /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gi;
 
-const DescriptionSchema = z.object({
-  asn: z.number(),
-  name: z.string(),
-  route: z.string(),
-  domain: z.string(),
-  type: z.string(),
-});
-
-export const GeolocationSchema = z.object({
-  ip: z.string(),
-  location: LocationSchema,
-  domains: z.string().array(),
-  as: DescriptionSchema,
-  isp: z.string(),
-});
-
-export type Geolocation = z.infer<typeof GeolocationSchema>;
-
-const DEV_MODE = import.meta.env.DEV;
+  return regexExp.test(str);
+};
 
 export const GeolocationService = {
-  async getGeolocation(ip: string): Promise<Geolocation> {
-    const response = await http.get<Geolocation>(`/json?ipAddress=${ip}`);
-    if (DEV_MODE) {
-      return GeolocationSchema.parse(response.data);
+  async getGeolocation(ipOrDomain: string) {
+    const isIp = isIP(ipOrDomain);
+    if (isIp) {
+      return await GeolocationRepository.getGeolocationByIp(ipOrDomain);
     }
-
-    const res = GeolocationSchema.safeParse(response.data);
-    if (res.success) {
-      return res.data;
-    }
-    throw new Error("Invalid Geolocation");
+    return await GeolocationRepository.getGeolocationByDomain(ipOrDomain);
   },
 };
