@@ -25,9 +25,19 @@ export const GeolocationSchema = z.object({
 
 export type Geolocation = z.infer<typeof GeolocationSchema>;
 
+const DEV_MODE = import.meta.env.DEV;
+
 export const GeolocationService = {
   async getGeolocation(ip: string): Promise<Geolocation> {
     const response = await http.get<Geolocation>(`/json?ipAddress=${ip}`);
-    return GeolocationSchema.parse(response.data);
+    if (DEV_MODE) {
+      return GeolocationSchema.parse(response.data);
+    }
+
+    const res = GeolocationSchema.safeParse(response.data);
+    if (res.success) {
+      return res.data;
+    }
+    throw new Error("Invalid Geolocation");
   },
 };
