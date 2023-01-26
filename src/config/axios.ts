@@ -1,7 +1,7 @@
 import axios from "axios";
 const BASE_URL = "https://geo.ipify.org/api/v2";
 
-export const instance = axios.create({
+export const http = axios.create({
   baseURL: BASE_URL,
   timeout: 1000,
   params: {
