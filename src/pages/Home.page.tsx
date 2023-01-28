@@ -3,6 +3,7 @@ import { createStore } from "solid-js/store";
 import { debounce } from "@solid-primitives/scheduled";
 import { GeolocationService } from "../services/Geolocation.service";
 import { Geolocation } from "../repositories/Geolocation.repository";
+import Map from "../components/map/Map.component";
 
 const Home: Component = () => {
   const [cache, setCache] = createStore<
@@ -56,7 +57,7 @@ const Home: Component = () => {
 
   return (
     <>
-      <header class="home__header flex bg-header-pattern bg-center bg-cover bg-no-repeat h-72">
+      <header class="home__header flex bg-header-pattern bg-center bg-cover bg-no-repeat h-72 max-h-[30vh]">
         <div class="home__header__inner flex flex-col align-center text-center mt-8 mx-auto">
           <h1 class="text-3xl text-white">IP Address Tracker</h1>
           <div class="home__header__input-wrapper flex w-[540px] mt-8">
@@ -81,7 +82,7 @@ const Home: Component = () => {
         </div>
       </header>
       <Show when={geolocation()}>
-        <section class="home__overview flex justify-center absolute left-2/4 -translate-x-2/4 -translate-y-2/4 w-[75vw]">
+        <section class="home__overview flex justify-center absolute left-2/4 -translate-x-2/4 -translate-y-2/4 w-[75vw] z-[800]">
           <div class="home__overview__inner flex bg-white text-black py-8 rounded-xl -top-2/4">
             <div class="home__overview__item px-8 w-1/4 border-r">
               <h6 class="home__overview__item__title text-dark-gray text-sm mb-2 uppercase">
@@ -118,7 +119,9 @@ const Home: Component = () => {
           </div>
         </section>
       </Show>
-      <section class="home__body">{/* Map here */}</section>
+      <section class="home__body h-[70vh]  max-h-[70vh]">
+        <Map></Map>
+      </section>
     </>
   );
 };
