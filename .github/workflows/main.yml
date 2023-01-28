@@ -19,7 +19,8 @@ jobs:
 
       - name: Build 🏗️
         run: npm run build
-        env: VITE_GEOLOCATION_API_KEY=${{secrets.apikey}}
+        env: 
+          VITE_GEOLOCATION_API_KEY: ${{secrets.apikey}}
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v1.0.7
