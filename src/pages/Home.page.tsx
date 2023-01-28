@@ -57,10 +57,10 @@ const Home: Component = () => {
 
   return (
     <>
-      <header class="home__header flex bg-header-pattern bg-center bg-cover bg-no-repeat h-72 max-h-[30vh]">
+      <header class="home__header flex bg-header-pattern bg-center bg-cover bg-no-repeat h-[30vh] laptop:h-72 max-h-[30vh]">
         <div class="home__header__inner flex flex-col align-center text-center mt-8 mx-auto">
           <h1 class="text-3xl text-white">IP Address Tracker</h1>
-          <div class="home__header__input-wrapper flex w-[540px] mt-8">
+          <div class="home__header__input-wrapper flex w-[540px] max-w-[90vw] mt-8">
             <input
               class="home__header__input w-full h-12 px-4 rounded-l-xl"
               placeholder="Search for any IP address or domain"
@@ -82,36 +82,38 @@ const Home: Component = () => {
         </div>
       </header>
       <Show when={geolocation()}>
-        <section class="home__overview flex justify-center absolute left-2/4 -translate-x-2/4 -translate-y-2/4 w-[75vw] z-[800]">
-          <div class="home__overview__inner flex bg-white text-black py-8 rounded-xl -top-2/4">
-            <div class="home__overview__item px-8 w-1/4 border-r">
-              <h6 class="home__overview__item__title text-dark-gray text-sm mb-2 uppercase">
+        <section class="home__overview flex justify-center absolute left-2/4 -translate-x-2/4 -translate-y-[30%] laptop:-translate-y-2/4 w-[90vw] laptop:w-[75vw] z-[800]">
+          <div class="home__overview__inner flex flex-col laptop:flex-row bg-white text-black text-center laptop:text-left py-8 rounded-xl -top-2/4">
+            <div class="home__overview__item px-8 w-full laptop:w-1/4 laptop:border-r">
+              <h6 class="home__overview__item__title text-dark-gray text-sm mb-1 uppercase">
                 IP Address
               </h6>
-              <h4 class="home__overview__item__value">{geolocation()?.ip}</h4>
+              <h4 class="home__overview__item__value mb-4 laptop:mb-0">
+                {geolocation()?.ip}
+              </h4>
             </div>
 
-            <div class="home__overview__item px-8 w-1/4 border-r">
-              <h6 class="home__overview__item__title text-dark-gray text-sm mb-2 uppercase">
+            <div class="home__overview__item px-8 w-full laptop:w-1/4 laptop:border-r">
+              <h6 class="home__overview__item__title text-dark-gray text-sm mb-1 uppercase">
                 Location
               </h6>
-              <h4 class="home__overview__item__value">
+              <h4 class="home__overview__item__value mb-4 laptop:mb-0">
                 {geolocation()?.location.city}, {geolocation()?.location.region}{" "}
                 {geolocation()?.location.postalCode}
               </h4>
             </div>
 
-            <div class="home__overview__item px-8 w-1/4 border-r">
-              <h6 class="home__overview__item__title text-dark-gray text-sm mb-2 uppercase">
+            <div class="home__overview__item px-8 w-full laptop:w-1/4 laptop:border-r">
+              <h6 class="home__overview__item__title text-dark-gray text-sm mb-1 uppercase">
                 Timezone
               </h6>
-              <h4 class="home__overview__item__value">
+              <h4 class="home__overview__item__value mb-4 laptop:mb-0">
                 UTC {geolocation()?.location.timezone}
               </h4>
             </div>
 
-            <div class="home__overview__item px-8 w-1/4">
-              <h6 class="home__overview__item__title text-dark-gray text-sm mb-2 uppercase">
+            <div class="home__overview__item px-8 w-full laptop:w-1/4">
+              <h6 class="home__overview__item__title text-dark-gray text-sm mb-1 uppercase">
                 ISP
               </h6>
               <h4 class="home__overview__item__value">{geolocation()?.isp}</h4>
