@@ -40,6 +40,11 @@ const LMap: Component<{ geolocation: Geolocation | null }> = (props) => {
       map("map", {
         center: [51.505, -0.09],
         zoom: 13,
+        dragging: false,
+        touchZoom: false,
+        scrollWheelZoom: false,
+        doubleClickZoom: false,
+        zoomControl: false,
       })
     );
 

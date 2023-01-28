@@ -15,6 +15,7 @@ const Home: Component = () => {
 
   const [query, setQuery] = createSignal("");
   const [geolocation, setGeolocation] = createSignal<Geolocation | null>(null);
+  let inputRef = null as unknown as HTMLInputElement;
 
   const getFromCache = (query: string) => {
     const cached = cache.find(
@@ -24,7 +25,7 @@ const Home: Component = () => {
   };
 
   const handleInput = debounce(async (e: Event) => {
-    setQuery((e.target as HTMLInputElement).value);
+    setQuery(inputRef.value);
 
     if (query().length > 0) {
       const cached = getFromCache(query());
@@ -65,10 +66,14 @@ const Home: Component = () => {
               class="home__header__input w-full h-12 px-4 rounded-l-xl"
               placeholder="Search for any IP address or domain"
               type="text"
+              ref={inputRef}
               onInput={handleInput}
               value={query()}
             ></input>
-            <button class="home__header__button bg-black p-4 rounded-r-xl">
+            <button
+              class="home__header__button bg-black p-4 rounded-r-xl"
+              onClick={handleInput}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14">
                 <path
                   fill="none"
