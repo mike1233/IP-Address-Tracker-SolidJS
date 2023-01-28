@@ -4,6 +4,9 @@ on:
       - main
 
 jobs:
+  permissions:
+    actions: write
+
   build:
     runs-on: ubuntu-latest
 
