@@ -1,34 +1,61 @@
-## Usage
+# Frontend Mentor - IP address tracker solution
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+This is a solution to the [IP address tracker challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/ip-address-tracker-I8-0yYAH0). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+## Table of contents
 
-```bash
-$ npm install # or pnpm install or yarn install
-```
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+- [Author](#author)
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+**Note: Delete this note and update the table of contents based on what sections you keep.**
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+### The challenge
 
-### `npm dev` or `npm start`
+Users should be able to:
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- View the optimal layout for each page depending on their device's screen size
+- See hover states for all interactive elements on the page
+- See their own IP address on the map on the initial page load
+- Search for any IP addresses or domains and see the key information and location
 
-The page will reload if you make edits.<br>
+### Screenshot
 
-### `npm run build`
+![](./screenshot.jpg)
 
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
+### Links
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
 
-## Deployment
+## My process
 
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+### Built with
+
+- HTML
+- Tailwind/Postcss
+- SolidJS / Typescript [url](https://www.solidjs.com/guides/getting-started#try-solid)
+- Zod [url](https://github.com/colinhacks/zod)
+- Axios [url](https://axios-http.com/docs/intro)
+
+### What I learned
+
+During this project I learned to setup my first SolidJS project and got a basic grasp on how to work with the reactivity system. I also got to try out Zod to set up schema's/types for my application.
+
+### Continued development
+
+I want to dive deeper into the workings of Zod specifically to see if i can improve my current and future applications in terms of runtime typechecking/validations of the data.
+
+## Author
+
+- Website - [Mike](https://www.your-site.com)
+- Frontend Mentor - [@mike1233](https://www.frontendmentor.io/profile/mike1233)
+- Github - [@mike1233](https://github.com/mike1233)
