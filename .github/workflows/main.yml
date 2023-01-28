@@ -4,11 +4,11 @@ on:
       - main
 
 jobs:
-  permissions:
-    actions: write
-
   build:
     runs-on: ubuntu-latest
+
+    permissions:
+      actions: write
 
     steps:
       - name: Checkout 🛎️
@@ -19,7 +19,7 @@ jobs:
 
       - name: Build 🏗️
         run: npm run build
-        env: 
+        env:
           VITE_GEOLOCATION_API_KEY: ${{secrets.apikey}}
 
       - name: Upload GitHub Pages artifact
