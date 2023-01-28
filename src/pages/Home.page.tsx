@@ -47,21 +47,79 @@ const Home: Component = () => {
     const cached = localStorage.getItem("cache");
     if (cached) {
       setCache(JSON.parse(cached));
+      if (cache.length === 0) return;
+      const cachedGeolocation = cache[cache.length - 1];
+      setGeolocation(cachedGeolocation.data);
+      setQuery(cachedGeolocation.query);
     }
   });
 
   return (
-    <main>
-      <section>
-        <h1>Home</h1>
-      </section>
-      <section>
-        <input type="text" onInput={handleInput}></input>
-        <Show when={geolocation()}>
-          <pre textContent={JSON.stringify(geolocation(), null, 2)}></pre>
-        </Show>
-      </section>
-    </main>
+    <>
+      <header class="home__header flex bg-header-pattern bg-center bg-cover bg-no-repeat h-72">
+        <div class="home__header__inner flex flex-col align-center text-center mt-8 mx-auto">
+          <h1 class="text-3xl text-white">IP Address Tracker</h1>
+          <div class="home__header__input-wrapper flex w-[540px] mt-8">
+            <input
+              class="home__header__input w-full h-12 px-4 rounded-l-xl"
+              placeholder="Search for any IP address or domain"
+              type="text"
+              onInput={handleInput}
+              value={query()}
+            ></input>
+            <button class="home__header__button bg-black p-4 rounded-r-xl">
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14">
+                <path
+                  fill="none"
+                  stroke="#FFF"
+                  stroke-width="3"
+                  d="M2 1l6 6-6 6"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+      <Show when={geolocation()}>
+        <section class="home__overview flex justify-center absolute left-2/4 -translate-x-2/4 -translate-y-2/4 w-[75vw]">
+          <div class="home__overview__inner flex bg-white text-black py-8 rounded-xl -top-2/4">
+            <div class="home__overview__item px-8 w-1/4 border-r">
+              <h6 class="home__overview__item__title text-dark-gray text-sm mb-2 uppercase">
+                IP Address
+              </h6>
+              <h4 class="home__overview__item__value">{geolocation()?.ip}</h4>
+            </div>
+
+            <div class="home__overview__item px-8 w-1/4 border-r">
+              <h6 class="home__overview__item__title text-dark-gray text-sm mb-2 uppercase">
+                Location
+              </h6>
+              <h4 class="home__overview__item__value">
+                {geolocation()?.location.city}, {geolocation()?.location.region}{" "}
+                {geolocation()?.location.postalCode}
+              </h4>
+            </div>
+
+            <div class="home__overview__item px-8 w-1/4 border-r">
+              <h6 class="home__overview__item__title text-dark-gray text-sm mb-2 uppercase">
+                Timezone
+              </h6>
+              <h4 class="home__overview__item__value">
+                UTC {geolocation()?.location.timezone}
+              </h4>
+            </div>
+
+            <div class="home__overview__item px-8 w-1/4">
+              <h6 class="home__overview__item__title text-dark-gray text-sm mb-2 uppercase">
+                ISP
+              </h6>
+              <h4 class="home__overview__item__value">{geolocation()?.isp}</h4>
+            </div>
+          </div>
+        </section>
+      </Show>
+      <section class="home__body">{/* Map here */}</section>
+    </>
   );
 };
 

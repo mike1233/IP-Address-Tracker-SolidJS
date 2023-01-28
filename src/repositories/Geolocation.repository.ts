@@ -5,6 +5,11 @@ const LocationSchema = z.object({
   country: z.string(),
   region: z.string(),
   timezone: z.string(),
+  city: z.string(),
+  lat: z.number(),
+  lng: z.number(),
+  postalCode: z.string(),
+  geonameId: z.number(),
 });
 
 const DescriptionSchema = z.object({
@@ -29,7 +34,7 @@ const DEV_MODE = import.meta.env.DEV;
 
 export const GeolocationRepository = {
   async getGeolocationByIp(ip: string): Promise<Geolocation> {
-    const response = await http.get<Geolocation>(`/country`, {
+    const response = await http.get<Geolocation>(`/country,city`, {
       params: {
         ipAddress: ip,
       },
@@ -46,7 +51,7 @@ export const GeolocationRepository = {
   },
 
   async getGeolocationByDomain(domain: string): Promise<Geolocation> {
-    const response = await http.get<Geolocation>(`/country`, {
+    const response = await http.get<Geolocation>(`/country,city`, {
       params: {
         domain: domain,
       },

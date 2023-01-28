@@ -3,9 +3,12 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        "header-pattern": "url('/src/assets/images/pattern-bg.png')",
+      },
       colors: {
-        "Very Dark Gray": "hsl(0, 0%, 17%)",
-        "Dark Gray": "hsl(0, 0%, 59%)",
+        "very-dark-gray": "hsl(0, 0%, 17%)",
+        "dark-gray": "hsl(0, 0%, 59%)",
       },
       fontFamily: {
         sans: ["Rubik", "sans-serif"],
@@ -35,5 +38,5 @@ module.exports = {
       // => @media (min-width: 1440px) { ... }
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
