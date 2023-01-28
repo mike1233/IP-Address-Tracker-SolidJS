@@ -16,6 +16,24 @@ module.exports = {
         xl: "1.25rem",
       },
     },
+    screens: {
+      // You can add more breakpoints as you need them
+      // https://tailwindcss.com/docs/breakpoints
+      mobile: "375px",
+      // => @media (min-width: 375px) { ... }
+
+      tablet: "640px",
+      // => @media (min-width: 640px) { ... }
+
+      laptop: "1024px",
+      // => @media (min-width: 1024px) { ... }
+
+      desktop: "1280px",
+      // => @media (min-width: 1280px) { ... }
+
+      "desktop-xl": "1440px",
+      // => @media (min-width: 1440px) { ... }
+    },
   },
   plugins: [],
 };
