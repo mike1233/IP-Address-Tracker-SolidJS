@@ -122,7 +122,7 @@ const Home: Component = () => {
         </section>
       </Show>
       <section class="home__body h-[70vh]  max-h-[70vh]">
-        <Map></Map>
+        <Map geolocation={geolocation()}></Map>
       </section>
     </>
   );

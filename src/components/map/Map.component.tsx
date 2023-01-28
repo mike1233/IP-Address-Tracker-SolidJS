@@ -1,19 +1,55 @@
-import { Component, onMount } from "solid-js";
-import { map, tileLayer } from "leaflet";
+import { Component, createEffect, createSignal, onMount } from "solid-js";
+import {
+  map,
+  tileLayer,
+  LatLng,
+  Map,
+  marker,
+  icon,
+  layerGroup,
+  LayerGroup,
+} from "leaflet";
+import { Geolocation } from "../../repositories/Geolocation.repository";
+import svg from "../../assets/images/icon-location.svg";
 import "leaflet/dist/leaflet.css";
 
-const Map: Component = () => {
+const LMap: Component<{ geolocation: Geolocation | null }> = (props) => {
+  const [MAP, setMAP] = createSignal<Map | null>(null);
+  const [markerGroup, setMarkerGroup] = createSignal<LayerGroup | null>(null);
+
+  const markerIcon = icon({
+    iconUrl: svg,
+  });
+
+  const setLocation = (g: Geolocation) => {
+    MAP()?.setView(new LatLng(g.location.lat, g.location.lng), 18);
+    markerGroup()?.clearLayers();
+    marker(new LatLng(g.location.lat, g.location.lng), {
+      icon: markerIcon,
+    }).addTo(markerGroup()!);
+  };
+
+  createEffect(() => {
+    if (MAP() && props.geolocation) {
+      setLocation(props.geolocation);
+    }
+  });
+
   onMount(() => {
-    const M = map("map", {
-      center: [51.505, -0.09],
-      zoom: 13,
-    });
+    setMAP(
+      map("map", {
+        center: [51.505, -0.09],
+        zoom: 13,
+      })
+    );
 
     tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution:
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    }).addTo(M);
+    }).addTo(MAP()!);
+
+    setMarkerGroup(layerGroup().addTo(MAP()!));
   });
 
   return (
@@ -23,4 +59,4 @@ const Map: Component = () => {
   );
 };
 
-export default Map;
+export default LMap;
