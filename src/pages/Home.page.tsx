@@ -83,7 +83,7 @@ const Home: Component = () => {
         <section class="home__overview flex justify-center absolute left-2/4 -translate-x-2/4 -translate-y-[30%] laptop:-translate-y-2/4 w-[90vw] laptop:w-[75vw] z-[800]">
           <div class="home__overview__inner flex flex-col laptop:flex-row bg-white text-black text-center laptop:text-left py-8 rounded-xl -top-2/4">
             <div class="home__overview__item px-8 w-full laptop:w-1/4 laptop:border-r">
-              <h6 class="home__overview__item__title text-dark-gray text-sm mb-1 uppercase tracking-widest">
+              <h6 class="home__overview__item__title text-dark-gray text-sm mb-2 uppercase tracking-widest">
                 IP Address
               </h6>
               <h4 class="home__overview__item__value mb-4 laptop:mb-0">
@@ -92,7 +92,7 @@ const Home: Component = () => {
             </div>
 
             <div class="home__overview__item px-8 w-full laptop:w-1/4 laptop:border-r">
-              <h6 class="home__overview__item__title text-dark-gray text-sm mb-1 uppercase tracking-widest">
+              <h6 class="home__overview__item__title text-dark-gray text-sm mb-2 uppercase tracking-widest">
                 Location
               </h6>
               <h4 class="home__overview__item__value mb-4 laptop:mb-0">
@@ -102,7 +102,7 @@ const Home: Component = () => {
             </div>
 
             <div class="home__overview__item px-8 w-full laptop:w-1/4 laptop:border-r">
-              <h6 class="home__overview__item__title text-dark-gray text-sm mb-1 uppercase tracking-widest">
+              <h6 class="home__overview__item__title text-dark-gray text-sm mb-2 uppercase tracking-widest">
                 Timezone
               </h6>
               <h4 class="home__overview__item__value mb-4 laptop:mb-0">
@@ -111,7 +111,7 @@ const Home: Component = () => {
             </div>
 
             <div class="home__overview__item px-8 w-full laptop:w-1/4">
-              <h6 class="home__overview__item__title text-dark-gray text-sm mb-1 uppercase tracking-widest">
+              <h6 class="home__overview__item__title text-dark-gray text-sm mb-2 uppercase tracking-widest">
                 ISP
               </h6>
               <h4 class="home__overview__item__value">{geolocation()?.isp}</h4>
