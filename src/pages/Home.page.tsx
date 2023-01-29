@@ -51,7 +51,7 @@ const Home: Component = () => {
 
   return (
     <>
-      <header class="home__header flex bg-header-pattern bg-center bg-cover bg-no-repeat h-[45vh] tablet:h-[35vh] laptop:h-72 max-h-[45vh] tablet:max-h-[35vh]">
+      <header class="home__header flex bg-header-pattern bg-center bg-cover bg-no-repeat min-h-[300px] h-[40vh] tablet:h-[35vh] laptop:h-72 max-h-[40vh] tablet:max-h-[35vh]">
         <div class="home__header__inner flex flex-col align-center text-center mt-8 mx-auto">
           <h1 class="text-3xl text-white">IP Address Tracker</h1>
           <div class="home__header__input-wrapper flex w-[540px] max-w-[90vw] mt-8">
@@ -83,7 +83,7 @@ const Home: Component = () => {
         <section class="home__overview flex justify-center absolute left-2/4 -translate-x-2/4 -translate-y-[30%] laptop:-translate-y-2/4 w-[90vw] laptop:w-[75vw] z-[800]">
           <div class="home__overview__inner flex flex-col laptop:flex-row bg-white text-black text-center laptop:text-left py-8 rounded-xl -top-2/4">
             <div class="home__overview__item px-8 w-full laptop:w-1/4 laptop:border-r">
-              <h6 class="home__overview__item__title text-dark-gray text-sm mb-1 uppercase">
+              <h6 class="home__overview__item__title text-dark-gray text-sm mb-1 uppercase tracking-widest">
                 IP Address
               </h6>
               <h4 class="home__overview__item__value mb-4 laptop:mb-0">
@@ -92,7 +92,7 @@ const Home: Component = () => {
             </div>
 
             <div class="home__overview__item px-8 w-full laptop:w-1/4 laptop:border-r">
-              <h6 class="home__overview__item__title text-dark-gray text-sm mb-1 uppercase">
+              <h6 class="home__overview__item__title text-dark-gray text-sm mb-1 uppercase tracking-widest">
                 Location
               </h6>
               <h4 class="home__overview__item__value mb-4 laptop:mb-0">
@@ -102,7 +102,7 @@ const Home: Component = () => {
             </div>
 
             <div class="home__overview__item px-8 w-full laptop:w-1/4 laptop:border-r">
-              <h6 class="home__overview__item__title text-dark-gray text-sm mb-1 uppercase">
+              <h6 class="home__overview__item__title text-dark-gray text-sm mb-1 uppercase tracking-widest">
                 Timezone
               </h6>
               <h4 class="home__overview__item__value mb-4 laptop:mb-0">
@@ -111,7 +111,7 @@ const Home: Component = () => {
             </div>
 
             <div class="home__overview__item px-8 w-full laptop:w-1/4">
-              <h6 class="home__overview__item__title text-dark-gray text-sm mb-1 uppercase">
+              <h6 class="home__overview__item__title text-dark-gray text-sm mb-1 uppercase tracking-widest">
                 ISP
               </h6>
               <h4 class="home__overview__item__value">{geolocation()?.isp}</h4>
@@ -119,7 +119,7 @@ const Home: Component = () => {
           </div>
         </section>
       </Show>
-      <section class="home__body h-[55vh] tablet:h-[65vh] laptop:h-[70vh] max-h-[55vh] tablet:max-h-[65vh] laptop:max-h-[70vh]">
+      <section class="home__body h-[70vh] min-h-[600px]">
         <Map geolocation={geolocation()}></Map>
       </section>
     </>
