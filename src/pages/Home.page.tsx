@@ -51,7 +51,7 @@ const Home: Component = () => {
 
   return (
     <>
-      <header class="home__header flex bg-header-pattern bg-center bg-cover bg-no-repeat min-h-[300px] h-[40vh] tablet:h-[35vh] laptop:h-72 max-h-[40vh] tablet:max-h-[35vh]">
+      <header class="home__header flex bg-header-pattern bg-center bg-cover bg-no-repeat min-h-[300px] laptop:min-h-[unset] h-[40vh] tablet:h-[35vh] laptop:h-72 max-h-[40vh] tablet:max-h-[35vh]">
         <div class="home__header__inner flex flex-col align-center text-center mt-8 mx-auto">
           <h1 class="text-3xl text-white">IP Address Tracker</h1>
           <div class="home__header__input-wrapper flex w-[540px] max-w-[90vw] mt-8">
