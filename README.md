@@ -33,7 +33,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Solution](https://your-solution-url.com)
+- Solution URL: [Solution](https://www.frontendmentor.io/solutions/ip-address-tracker-made-with-solidjstypescript-and-tailwind-9LsdfJlLsJ)
 - Live Site URL: [Demo](https://mike1233.github.io/IP-Address-Tracker-SolidJS/)
 
 ## My process
