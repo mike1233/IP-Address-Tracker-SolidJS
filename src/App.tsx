@@ -4,8 +4,6 @@ import { Routes, Route } from "@solidjs/router";
 import Home from "./pages/Home.page";
 
 const App: Component = () => {
-  console.log(import.meta.env);
-
   return (
     <Routes>
       <Route path="/" component={Home} />
