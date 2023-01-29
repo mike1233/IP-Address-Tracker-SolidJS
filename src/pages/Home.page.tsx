@@ -66,6 +66,7 @@ const Home: Component = () => {
             <button
               class="home__header__button bg-black  hover:bg-very-dark-gray p-4 rounded-r-xl"
               onClick={handleInput}
+              aria-label="Search for any IP address or domain"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14">
                 <path
