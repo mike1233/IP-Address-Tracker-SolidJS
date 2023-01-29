@@ -56,7 +56,7 @@ const Home: Component = () => {
           <h1 class="text-3xl text-white">IP Address Tracker</h1>
           <div class="home__header__input-wrapper flex w-[540px] max-w-[90vw] mt-8">
             <input
-              class="home__header__input w-full h-12 px-4 rounded-l-xl focus:outline-none focus:ring focus:border-blue-500"
+              class="home__header__input w-full h-12 px-4 py-4 h-[56px] rounded-l-xl focus:outline-none focus:ring focus:border-blue-500"
               placeholder="Search for any IP address or domain"
               type="text"
               ref={inputRef}

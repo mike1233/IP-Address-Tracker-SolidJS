@@ -16,26 +16,26 @@
 @layer base {
   h1 {
     @apply text-5xl;
-    @apply font-semibold;
+    @apply font-medium;
   }
   h2 {
     @apply text-4xl;
-    @apply font-semibold;
+    @apply font-medium;
   }
   h3 {
     @apply text-3xl;
-    @apply font-semibold;
+    @apply font-medium;
   }
   h4 {
     @apply text-2xl;
-    @apply font-semibold;
+    @apply font-medium;
   }
   h5 {
     @apply text-xl;
-    @apply font-semibold;
+    @apply font-medium;
   }
   h6 {
     @apply text-base;
-    @apply font-semibold;
+    @apply font-medium;
   }
 }
