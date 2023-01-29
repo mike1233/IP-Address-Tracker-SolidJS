@@ -33,8 +33,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Solution](https://your-solution-url.com)
+- Live Site URL: [Demo](https://mike1233.github.io/IP-Address-Tracker-SolidJS/)
 
 ## My process
 
@@ -56,6 +56,5 @@ I want to dive deeper into the workings of Zod specifically to see if i can impr
 
 ## Author
 
-- Website - [Mike](https://www.your-site.com)
 - Frontend Mentor - [@mike1233](https://www.frontendmentor.io/profile/mike1233)
 - Github - [@mike1233](https://github.com/mike1233)

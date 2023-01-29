@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { z } from "zod";
 import { http } from "../config/axios";
 
@@ -23,7 +24,7 @@ const DescriptionSchema = z.object({
 export const GeolocationSchema = z.object({
   ip: z.string(),
   location: LocationSchema,
-  domains: z.string().array(),
+  domains: z.string().array().optional(),
   as: DescriptionSchema,
   isp: z.string(),
 });
@@ -32,22 +33,33 @@ export type Geolocation = z.infer<typeof GeolocationSchema>;
 
 const DEV_MODE = import.meta.env.DEV;
 
+const parser = <T>(value: AxiosResponse<T>) => {
+  if (DEV_MODE) {
+    return GeolocationSchema.parse(value.data);
+  }
+
+  const res = GeolocationSchema.safeParse(value.data);
+  if (res.success) {
+    return res.data;
+  }
+
+  alert(res.error);
+  throw new Error(res.error.toString());
+};
+
 export const GeolocationRepository = {
+  async getUserGeolocation(): Promise<Geolocation> {
+    const response = await http.get<Geolocation>(`/country,city`, {});
+    return parser(response);
+  },
+
   async getGeolocationByIp(ip: string): Promise<Geolocation> {
     const response = await http.get<Geolocation>(`/country,city`, {
       params: {
         ipAddress: ip,
       },
     });
-    if (DEV_MODE) {
-      return GeolocationSchema.parse(response.data);
-    }
-
-    const res = GeolocationSchema.safeParse(response.data);
-    if (res.success) {
-      return res.data;
-    }
-    throw new Error("Invalid Geolocation");
+    return parser(response);
   },
 
   async getGeolocationByDomain(domain: string): Promise<Geolocation> {
@@ -56,14 +68,6 @@ export const GeolocationRepository = {
         domain: domain,
       },
     });
-    if (DEV_MODE) {
-      return GeolocationSchema.parse(response.data);
-    }
-
-    const res = GeolocationSchema.safeParse(response.data);
-    if (res.success) {
-      return res.data;
-    }
-    throw new Error("Invalid Geolocation");
+    return parser(response);
   },
 };

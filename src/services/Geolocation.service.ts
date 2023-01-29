@@ -14,11 +14,16 @@ const isDomain = (str: string) => {
 };
 
 export const GeolocationService = {
-  async getGeolocation(ipOrDomain: string) {
+  async getGeolocation(ipOrDomain?: string) {
+    if (!ipOrDomain) {
+      return await GeolocationRepository.getUserGeolocation();
+    }
+
     const isIp = isIP(ipOrDomain);
     const isD = isDomain(ipOrDomain);
 
     if (!isIp && !isD) {
+      alert("Invalid IP or Domain");
       throw new Error("Invalid IP or Domain");
     }
 

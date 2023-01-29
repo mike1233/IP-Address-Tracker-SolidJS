@@ -24,46 +24,39 @@ const Home: Component = () => {
     return cached?.data;
   };
 
-  const handleInput = debounce(async (e: Event) => {
+  const handleInput = debounce(async () => {
     setQuery(inputRef.value);
 
-    if (query().length > 0) {
-      const cached = getFromCache(query());
-      if (cached) {
-        setGeolocation(cached);
-        return;
-      }
-
-      try {
-        const geolocation = await GeolocationService.getGeolocation(query());
-        setCache([...cache, { query: query(), data: geolocation }]);
-        localStorage.setItem("cache", JSON.stringify(cache));
-        setGeolocation(geolocation);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  }, 500);
-
-  onMount(() => {
-    const cached = localStorage.getItem("cache");
+    const cached = getFromCache(query());
     if (cached) {
-      setCache(JSON.parse(cached));
-      if (cache.length === 0) return;
-      const cachedGeolocation = cache[cache.length - 1];
-      setGeolocation(cachedGeolocation.data);
-      setQuery(cachedGeolocation.query);
+      setGeolocation(cached);
+      return;
     }
+
+    try {
+      const geolocation = await GeolocationService.getGeolocation(query());
+      setCache([...cache, { query: query(), data: geolocation }]);
+      localStorage.setItem("cache", JSON.stringify(cache));
+      setGeolocation(geolocation);
+    } catch (error) {
+      console.error(error);
+    }
+  }, 300);
+
+  onMount(async () => {
+    const cached = JSON.parse(localStorage.getItem("cache") || "[]");
+    setCache(cached);
+    handleInput();
   });
 
   return (
     <>
-      <header class="home__header flex bg-header-pattern bg-center bg-cover bg-no-repeat h-[30vh] laptop:h-72 max-h-[30vh]">
+      <header class="home__header flex bg-header-pattern bg-center bg-cover bg-no-repeat h-[35vh] laptop:h-72 max-h-[35vh]">
         <div class="home__header__inner flex flex-col align-center text-center mt-8 mx-auto">
           <h1 class="text-3xl text-white">IP Address Tracker</h1>
           <div class="home__header__input-wrapper flex w-[540px] max-w-[90vw] mt-8">
             <input
-              class="home__header__input w-full h-12 px-4 rounded-l-xl"
+              class="home__header__input w-full h-12 px-4 rounded-l-xl focus:outline-none focus:ring focus:border-blue-500"
               placeholder="Search for any IP address or domain"
               type="text"
               ref={inputRef}
@@ -71,7 +64,7 @@ const Home: Component = () => {
               value={query()}
             ></input>
             <button
-              class="home__header__button bg-black p-4 rounded-r-xl"
+              class="home__header__button bg-black  hover:bg-very-dark-gray p-4 rounded-r-xl"
               onClick={handleInput}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14">
@@ -126,7 +119,7 @@ const Home: Component = () => {
           </div>
         </section>
       </Show>
-      <section class="home__body h-[70vh]  max-h-[70vh]">
+      <section class="home__body h-[65vh] laptop:h-[70vh] max-h-[65vh] laptop:max-h-[70vh]">
         <Map geolocation={geolocation()}></Map>
       </section>
     </>
